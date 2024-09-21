@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <title>Weather Application</title>
+    <script>
+        function getData() {
+            var cityname = document.getElementById("city").value;
+            var temp = "";
+            const url = "https://api.openweathermap.org/data/2.5/weather?q="+cityname+"&units=metric&appid=6bfe8d2f824cb82d1425f60737c2cc4e";
+            fetch(url)
+            .then((res) => 
+                  res.json())
+                  .then((data) => {
+                    console.log(data.main.temp);
+                    var temp = data.main.temp;
+                    temp = temp + " Celsius";
+                    document.getElementById("currentweather").innerText = temp;
+                  });             
+        }
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #d6d6d6;
+        }
+
+        h1, h3 {
+            text-align: center;
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 40px;
+            height: 300px;
+            width: 400px;
+            background-color: rgb(255, 255, 255);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: #efefef;
+        }
+
+        #city {
+            width: 250px;
+            border: 1px solid dodgerblue; 
+            height: 30px;
+            border-radius: 10px;
+        }
+
+        .weather {
+            margin-top: 35px;
+            margin-left: 160px;
+            margin-right: auto;
+            width: fit-content;
+        }
+
+        #currentweather {
+            margin-bottom: 90px;
+            font-size: 20px;
+        }
+
+        .action {
+            background-color: dodgerblue;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 15px;
+            margin-left: -15px;
+            margin-right: auto;
+            display: block;
+            cursor: pointer;
+            color: white;
+        }
+
+        #p1 {
+            margin-left: -35px;
+        }
+
+        #b1 {
+            margin-top: -50px;
+        }
+
+        footer {
+            background: #d6d6d6;
+            padding: 20px 23px;
+            color: #000;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer span a {
+            color: rgb(1, 35, 77);
+            text-decoration: none;
+        }
+
+        footer span a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Weather Details</h1>
+        <h3>Let's begin!!!</h3>
+        <div class="container">
+            Enter the City: <input type="text" id="city" placeholder="Enter City Name">
+            <div class="weather">
+                <img src="unnamed.png" alt="" height="100" width="100">
+                <div class="span-container" id="currentweather">
+                    <span id="currentweather">Current weather</span>
+                </div>
+                <button id="b1" class="action" onclick="getData()">Get Details</button>
+                <p id="p1"> Hope you have a great day ahead!</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <span>Created By <a href="https://www.linkedin.com/in/joyline-rencita-dsouza-927575206/" target="_blank" rel="noreferrer">Joyline Rencita Dsouza</a> | <span class="far fa-copyright"></span> <span>2024</span> All rights reserved </span>
+    </footer>
+</body>
+</html>
